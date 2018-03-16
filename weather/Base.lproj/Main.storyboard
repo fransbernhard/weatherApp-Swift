@@ -91,22 +91,22 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="53" id="Ehf-22-ep5"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="28"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add as favorite" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tKN-cH-ZQz">
-                                <rect key="frame" x="130" y="380" width="115" height="21"/>
+                                <rect key="frame" x="126" y="380" width="123.5" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="hhE-Ky-alB"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="STOCKHOLM" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SLC-OV-Ucp" userLabel="cTitle">
                                 <rect key="frame" x="16" y="119" width="343" height="115"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="48"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -143,7 +143,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="phZ-zq-OEo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1642.4000000000001" y="461.91904047976016"/>
+            <point key="canvasLocation" x="1078" y="475"/>
         </scene>
         <!--ZEARCH-->
         <scene sceneID="faW-xf-4cI">
@@ -167,17 +167,25 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="CityName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IrF-vg-7IH">
-                                            <rect key="frame" x="16" y="26" width="343" height="23"/>
+                                            <rect key="frame" x="16" y="0.0" width="343" height="74"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="23"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bg" translatesAutoresizingMaskIntoConstraints="NO" id="Lbd-pC-1KJ">
-                                            <rect key="frame" x="278" y="11" width="81" height="63"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg" translatesAutoresizingMaskIntoConstraints="NO" id="Lbd-pC-1KJ">
+                                            <rect key="frame" x="278" y="11" width="81" height="64"/>
                                         </imageView>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottomMargin" secondItem="Lbd-pC-1KJ" secondAttribute="bottom" id="3Ns-It-wQm"/>
+                                        <constraint firstItem="Lbd-pC-1KJ" firstAttribute="trailing" secondItem="hoy-ql-O0A" secondAttribute="trailingMargin" id="IHr-Zc-4fw"/>
+                                        <constraint firstItem="Lbd-pC-1KJ" firstAttribute="leading" secondItem="hoy-ql-O0A" secondAttribute="leadingMargin" constant="262" id="J7v-fR-4C9"/>
+                                        <constraint firstItem="Lbd-pC-1KJ" firstAttribute="top" secondItem="hoy-ql-O0A" secondAttribute="topMargin" id="RCv-pA-uYF"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="Lbd-pC-1KJ" secondAttribute="bottom" id="bVW-p3-1df"/>
+                                        <constraint firstItem="Lbd-pC-1KJ" firstAttribute="top" secondItem="hoy-ql-O0A" secondAttribute="topMargin" id="f5W-Xq-xE0"/>
+                                        <constraint firstItem="Lbd-pC-1KJ" firstAttribute="trailing" secondItem="hoy-ql-O0A" secondAttribute="trailingMargin" id="fKS-GP-iWe"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="sCellImg" destination="Lbd-pC-1KJ" id="MLk-at-cBY"/>
@@ -220,6 +228,6 @@
         <image name="bg" width="1703" height="2448"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="KTo-kf-kOr"/>
+        <segue reference="6jK-Az-w21"/>
     </inferredMetricsTieBreakers>
 </document>
