@@ -23,7 +23,7 @@ class DBHelper {
     }
     
     func save(_ data: [String]){
-        let defaults = UserDefaults.standard
+        // let defaults = UserDefaults.standard
 //        defaults.set(data!, forkey: key)
         
     }

@@ -17,6 +17,7 @@
 		3C33DB3720597E7700B0E135 /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C33DB3620597E7700B0E135 /* SearchTableViewController.swift */; };
 		3C33DB3B205A823400B0E135 /* FavoritesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C33DB3A205A823400B0E135 /* FavoritesTableViewCell.swift */; };
 		3CDD189F205AD8A500907F03 /* DBHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CDD189E205AD8A500907F03 /* DBHelper.swift */; };
+		3CED7783205BCF0C00CD36B9 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CED7782205BCF0C00CD36B9 /* SearchTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		3C33DB3620597E7700B0E135 /* SearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewController.swift; sourceTree = "<group>"; };
 		3C33DB3A205A823400B0E135 /* FavoritesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesTableViewCell.swift; sourceTree = "<group>"; };
 		3CDD189E205AD8A500907F03 /* DBHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBHelper.swift; sourceTree = "<group>"; };
+		3CED7782205BCF0C00CD36B9 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +77,7 @@
 				3C33DB3620597E7700B0E135 /* SearchTableViewController.swift */,
 				3C33DB3A205A823400B0E135 /* FavoritesTableViewCell.swift */,
 				3CDD189E205AD8A500907F03 /* DBHelper.swift */,
+				3CED7782205BCF0C00CD36B9 /* SearchTableViewCell.swift */,
 			);
 			path = weather;
 			sourceTree = "<group>";
@@ -156,6 +159,7 @@
 				3C33DB2320597D2B00B0E135 /* ViewController.swift in Sources */,
 				3CDD189F205AD8A500907F03 /* DBHelper.swift in Sources */,
 				3C33DB3720597E7700B0E135 /* SearchTableViewController.swift in Sources */,
+				3CED7783205BCF0C00CD36B9 /* SearchTableViewCell.swift in Sources */,
 				3C33DB2120597D2A00B0E135 /* AppDelegate.swift in Sources */,
 				3C33DB3520597E6A00B0E135 /* FavoritesTableViewController.swift in Sources */,
 			);
