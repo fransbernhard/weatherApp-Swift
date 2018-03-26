@@ -12,12 +12,20 @@ class FavoritesTableViewController: UITableViewController {
     
     var images = [String]()
     var data: [String] = []
+    
+    private let dbhelper = DBHelper()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         images = ["1", "2", "3", "1", "2", "3", "1"]
-        data = ["New York, NY", "Los Angeles, CA", "Chicago, IL", "Houston, TX", "Philadelphia, PA", "Phoenix, AZ", "San Diego, CA"]
+        data = dbhelper.getAllData()
+        print("yeess", dbhelper.getAllData())
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        data = dbhelper.getAllData()
+        tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -35,7 +43,6 @@ class FavoritesTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "fCell", for: indexPath) as! FavoritesTableViewCell
 
-        // cell.textLabel?.text = data[indexPath.row]
         cell.myImg.image = UIImage(named: images[indexPath.row])
         cell.myLabel?.text = data[indexPath.row]
         

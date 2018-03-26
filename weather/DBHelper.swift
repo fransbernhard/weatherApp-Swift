@@ -9,35 +9,40 @@
 import Foundation
 
 class DBHelper {
-    let key = "savedData"
+    private let key = "savedData"
+    private let defaults = UserDefaults.standard
     
     func getAllData() -> [String] {
-        let userDefaults = UserDefaults.standard
-        let saveData = userDefaults.object(forKey: key)
+        let saveData = defaults.object(forKey: key)
     
         if saveData is [String] {
             return saveData as! [String]
         } else {
-            return [] // felhantera
+            return []
         }
     }
     
-    func save(_ data: [String]){
-        // let defaults = UserDefaults.standard
-//        defaults.set(data!, forkey: key)
-        
+    private func save(_ data: [String]){
+        defaults.set(data, forKey: key)
     }
     
-    func add(){
-        
+    func add(city: String){
+        if !isInFav(city) {
+            var data = getAllData()
+            data.append(city)
+            save(data)
+        }
     }
     
-    func delete(){
-        
+    func delete(city: String){
+        let newFavorites = getAllData().filter{
+            $0 != city
+        }
+        save(newFavorites)
     }
     
-    func edit(){
-        
+    func isInFav(_ city: String) -> Bool {
+        return getAllData().contains(city)
     }
     
 }

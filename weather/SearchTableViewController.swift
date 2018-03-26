@@ -8,19 +8,101 @@
 
 import UIKit
 
-class SearchTableViewController: UITableViewController {
-    var data = [String]()
-    var images = [String]()
+class SearchTableViewController: UITableViewController, UISearchResultsUpdating {
+    
+    var data : [String] = [] // [String]()
+    var images : [String] = []
+    var searchController : UISearchController! // trust me!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        data = ["New York, NY", "Los Angeles, CA", "Chicago, IL", "Houston, TX", "Philadelphia, PA", "Phoenix, AZ", "San Diego, CA"]
         images = ["1", "2", "3", "1", "2", "3", "1"]
+        
+        definesPresentationContext = true // magiska flaggan
+        
+        searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self
+        searchController.dimsBackgroundDuringPresentation = false
+        
+        navigationItem.searchController = searchController
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+    
+    override func viewDidAppear(_ animated: Bool) {
+        print("VIW DID APPEAR")
+        super.viewDidAppear(animated)
+        searchController.isActive = true
+        DispatchQueue.main.async { [unowned self] in
+            self.searchController.searchBar.becomeFirstResponder()
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
+    }
+    
+    var shouldUseSearchResult : Bool {
+        if let text = searchController.searchBar.text {
+            if text.isEmpty {
+                return false
+            } else {
+                return searchController.isActive
+            }
+        } else {
+            return false
+        }
+    }
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        if let text = searchController.searchBar.text?.lowercased(){
+            print("NEW TEXT: \(searchController.searchBar.text ?? "default value")")
+            getWeatherData(searchText: text)
+        } else {
+            print("SET TO ZERO!!!!")
+            data = []
+        }
+    }
+    
+    func getWeatherData (searchText: String){
+        if let safeString = searchText.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed), let Url = URL(string: "http://api.openweathermap.org/data/2.5/find?q=\(safeString)&APPID=f342e8974a4922efcb502c12d5d49219") {
+            
+            let request = URLRequest(url: Url)
+            let task = URLSession.shared.dataTask(with: request, completionHandler:{ (data : Data?, response : URLResponse?, error : Error?) in
+                if let actualError = error {
+                    print(actualError)
+                } else {
+                    if let actualData = data {
+                        
+                        let decoder = JSONDecoder()
+                        
+                        do {
+                            let weatherResponse = try decoder.decode(WeatherResponse.self, from: actualData)
+                            let cityResponse = try decoder.decode(CityResponse.self, from: actualData)
+                            
+                            DispatchQueue.main.async {
+                                self.data = []
+                                for x in 0..<cityResponse.count {
+                                    print(weatherResponse.list[x].name! + ", " + weatherResponse.list[x].sys!["country"]!)
+                                    self.data.append(weatherResponse.list[x].name! + ", " + weatherResponse.list[x].sys!["country"]!)
+                                    print("SELF.DATA.COUNT: ", self.data.count)
+                                    self.tableView.reloadData()
+                                }
+                            }
+                        } catch let e {
+                            print("Error parsing json: \(e)")
+                        }
+                        
+                    } else {
+                        print("Data was nil.")
+                    }
+                }
+            })
+            task.resume()
+        } else {
+            print("Bad url string")
+        }
+        print(data)
+        // return data
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -28,20 +110,38 @@ class SearchTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return data.count
+        if shouldUseSearchResult {
+            return data.count
+        } else {
+            return 0
+        }
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "sCell", for: indexPath) as! SearchTableViewCell
         
+        var array : [String]
+        
+        if shouldUseSearchResult {
+            print("NOT SET TO ZERO")
+            array = data
+        } else {
+            print("SET ARRAY TO ZERO")
+            array = []
+        }
+        
         cell.sCellImg.image = UIImage(named: images[indexPath.row])
-        cell.sCellLabel?.text = data[indexPath.row]
+        cell.sCellLabel?.text = array[indexPath.row]
         
         return cell
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
     }
 
     /*
@@ -82,10 +182,12 @@ class SearchTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let indexPath = tableView.indexPathForSelectedRow {
             let selectedRow = indexPath.row
+            print("SELECTED ROW: ", data[selectedRow])
             let vc = segue.destination as! DetailViewController
             
             vc.recievedLabel = data[selectedRow]
             vc.recievedImage = images[selectedRow]
+            
         }
     }
 
