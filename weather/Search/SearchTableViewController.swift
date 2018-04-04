@@ -29,7 +29,6 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating 
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        print("VIW DID APPEAR")
         super.viewDidAppear(animated)
         searchController.isActive = true
         DispatchQueue.main.async { [unowned self] in
@@ -55,10 +54,8 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating 
     
     func updateSearchResults(for searchController: UISearchController) {
         if let text = searchController.searchBar.text?.lowercased(){
-            print("NEW TEXT: \(searchController.searchBar.text ?? "default value")")
             getWeatherData(searchText: text)
         } else {
-            print("SET TO ZERO!!!!")
             data = []
         }
     }
@@ -76,15 +73,14 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating 
                         let decoder = JSONDecoder()
                         
                         do {
-                            let weatherResponse = try decoder.decode(WeatherResponse.self, from: actualData)
+                            let w = try decoder.decode(WeatherResponse.self, from: actualData)
                             let cityResponse = try decoder.decode(CityResponse.self, from: actualData)
                             
                             DispatchQueue.main.async {
                                 self.data = []
                                 for x in 0..<cityResponse.count {
-                                    print(weatherResponse.list[x].name! + ", " + weatherResponse.list[x].sys!["country"]!)
-                                    self.data.append(weatherResponse.list[x].name! + ", " + weatherResponse.list[x].sys!["country"]!)
-                                    print("SELF.DATA.COUNT: ", self.data.count)
+                                    print(w.list[x].name! + ", " + w.list[x].sys!.country!)
+                                    self.data.append(w.list[x].name! + ", " + w.list[x].sys!.country!)
                                     self.tableView.reloadData()
                                 }
                             }
@@ -101,8 +97,6 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating 
         } else {
             print("Bad url string")
         }
-        print(data)
-        // return data
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -123,14 +117,12 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating 
         var array : [String]
         
         if shouldUseSearchResult {
-            print("NOT SET TO ZERO")
             array = data
         } else {
-            print("SET ARRAY TO ZERO")
             array = []
         }
         
-        cell.sCellImg.image = UIImage(named: images[indexPath.row])
+        // cell.sCellImg.image = UIImage(named: images[indexPath.row])
         cell.sCellLabel?.text = array[indexPath.row]
         
         return cell

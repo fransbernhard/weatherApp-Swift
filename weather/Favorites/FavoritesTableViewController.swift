@@ -11,6 +11,7 @@ import UIKit
 class FavoritesTableViewController: UITableViewController {
     
     var images = [String]()
+    var icons = [String: String]()
     var data: [String] = []
     
     private let dbhelper = DBHelper()

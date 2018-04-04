@@ -8,13 +8,22 @@
 
 import Foundation
 
+struct CityResponse: Codable {
+    let count : Int
+    let list : [WeatherInfo]
+}
+
+struct WeatherResponse: Codable {
+    let list: [WeatherInfo]
+}
+
 struct WeatherInfo : Codable {
     let name : String?
     let coord : [String: Double]?
     let main : [String: Double]?
     let dt : Double
     let wind : [String: Double]?
-    let sys : [String: String]?
+    let sys : Sys?
     let weather: [WeatherDesc]
     
     var temp: Double {
@@ -22,7 +31,7 @@ struct WeatherInfo : Codable {
     }
     
     var country: String {
-        return sys!["country"]!
+        return sys!.country!
     }
     
     var tempString: String {
@@ -32,6 +41,14 @@ struct WeatherInfo : Codable {
     var i: String {
         return weather[0].icon!
     }
+    
+    var iconImageData: Data? {
+        let url = URL(string:"http://openweathermap.org/img/w/\(weather[0].icon!).png")
+        if let data = try? Data(contentsOf: url!) {
+            return data
+        }
+        return nil
+    }
 }
 
 struct WeatherDesc : Codable {
@@ -40,11 +57,11 @@ struct WeatherDesc : Codable {
     let icon: String?
 }
 
-struct WeatherResponse: Codable {
-    let list: [WeatherInfo]
-}
-
-struct CityResponse: Codable {
-    let count : Int
-    let list : [WeatherInfo]
+struct Sys: Codable {
+    let sunrise: Double?
+    let sunset: Double?
+    let type: Int?
+    let id: Int?
+    let message: Double?
+    let country: String?
 }
