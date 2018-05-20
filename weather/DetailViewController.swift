@@ -21,11 +21,15 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var icon: UIImageView!
     @IBOutlet weak var emojLabel: UILabel!
+    @IBOutlet weak var box: UIView!
     
     private let dbhelper = DBHelper()
     var recievedLabel: String?
     var recievedImage = String()
     var myAudioPlayer: AVAudioPlayer?
+    var dynamicAnimator: UIDynamicAnimator!
+    var gravity: UIGravityBehavior!
+    var coillision: UICollisionBehavior!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,6 +55,15 @@ class DetailViewController: UIViewController {
         UIView.setAnimationCurve(.easeOut)
         icon.center.y += 80
         UIView.commitAnimations()
+        
+        // DYNAMICS
+        dynamicAnimator = UIDynamicAnimator(referenceView: view)
+        gravity = UIGravityBehavior(items: [box])
+        coillision = UICollisionBehavior(items: [box])
+        coillision.translatesReferenceBoundsIntoBoundary = true
+        dynamicAnimator.addBehavior(gravity)
+        dynamicAnimator.addBehavior(coillision)
+        
     }
     
     // AUDIO FILE 

@@ -1,23 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="XHp-T2-t31">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="XHp-T2-t31">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="HelveticaNeue.ttc">
-            <string>HelveticaNeue-Medium</string>
-        </array>
-        <array key="HelveticaNeueLights.ttc">
-            <string>HelveticaNeue-Thin</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--FAVORITES-->
         <scene sceneID="OUZ-Fe-YGz">
@@ -172,6 +164,11 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uUz-QM-MhE">
+                                        <rect key="frame" x="0.0" y="0.0" width="98" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="1" green="0.88499735820000003" blue="0.96126400000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </view>
                                 </subviews>
                             </view>
                         </subviews>
@@ -179,6 +176,7 @@
                         <viewLayoutGuide key="safeArea" id="xQH-DM-I23"/>
                     </view>
                     <connections>
+                        <outlet property="box" destination="uUz-QM-MhE" id="giR-7o-4gD"/>
                         <outlet property="degrees" destination="NEa-RU-DpS" id="7Ht-aq-h9A"/>
                         <outlet property="descriptionLabel" destination="6VE-DI-qKv" id="XPK-P6-ZTp"/>
                         <outlet property="emojLabel" destination="FhA-Fv-2q5" id="mro-UE-7cI"/>
@@ -276,6 +274,6 @@
         <image name="wind" width="512" height="512"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="6jK-Az-w21"/>
+        <segue reference="KTo-kf-kOr"/>
     </inferredMetricsTieBreakers>
 </document>
